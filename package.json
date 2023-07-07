@@ -4,11 +4,12 @@
 	"private": true,
 	"scripts": {
 		"dev": "next dev",
-		"build": "next build",
+		"build": "prisma generate && next build",
 		"start": "next start",
 		"lint": "next lint",
 		"test": "jest",
-		"prepare": "husky install"
+		"prepare": "husky install",
+		"postinstall": "prisma generate"
 	},
 	"husky": {
 		"hooks": {
