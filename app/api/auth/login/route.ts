@@ -46,12 +46,12 @@ export async function POST(req: NextRequest) {
 			{ status: 200, headers: { "Content-Type": "application/json" } }
 		);
 
-		// [0]the cookie has httpOnly to true making in un-accessible by our frontend. If this doesn't exist then our logged-in cookie shouldn't exist as well.
-		// helping us redirect the user to the login page.
-		// [1]loggin-in cookie is intentionally set as non-HTTPOnly, allowing use to access it from our frontend.
-		// Helps us check if the user has a valid token while moving between pages
 		await Promise.all([
+			// [0]the cookie has httpOnly to true making in un-accessible by our frontend. If this doesn't exist then our logged-in cookie shouldn't exist as well.
+			// helping us redirect the user to the login page.
 			response.cookies.set(cookieOptions),
+			// [1]loggin-in cookie is intentionally set as non-HTTPOnly, allowing use to access it from our frontend.
+			// Helps us check if the user has a valid token while moving between pages
 			response.cookies.set({
 				name: "logged-in",
 				value: "true",
